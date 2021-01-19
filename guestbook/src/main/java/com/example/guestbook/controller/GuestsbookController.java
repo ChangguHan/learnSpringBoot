@@ -24,6 +24,7 @@ public class GuestsbookController {
     public String index() {
         return "redirect:/guestbook/list";
     }
+    
     /**
      * spring MVC : 파라미터 자동으로 수집, page, size 파라미터 전달 시 PageRequestDTO 객체로 자동으로 수집
      * Model : 결과 데이터를 화면에 전달하기 위해 사용
