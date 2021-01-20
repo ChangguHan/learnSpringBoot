@@ -9,11 +9,13 @@
     <th:block th:fragment="content">
         <h1 class="mt-4">GuestBook Modify Page</h1>
 
-        <form action="/guestbook/modify" mothod="post">
+        <form action="/guestbook/modify" method="post">
 
 <!--페이지 번호-->
 <!--            modify, read에도 계속 가지고 있어야, 나중에 목록 돌아가면 정보 가지고 있을수 있음-->
         <input type="hidden" name="page" th:value="${requestDTO.page}">
+        <input type="hidden" name="type" th:value="${requestDTO.type}">
+        <input type="hidden" name="keyword" th:value="${requestDTO.keyword}">
 
         <div class="form-group">
             <label>Gno</label>
@@ -32,17 +34,17 @@
 
         <div class="form-group">
             <label>Writer</label>
-            <textarea type="text" class="form-control" name="writer" th:value="${dto.writer}" readonly></textarea>
+            <textarea type="text" class="form-control" name="writer" readonly>[[${dto.writer}]]</textarea>
         </div>
 
         <div class="form-group">
             <label>RegDate</label>
-            <input type="text" class="form-control" name="regDate" th:value="${#temporals.format(dto.regDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+            <input type="text" class="form-control" th:value="${#temporals.format(dto.regDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
         </div>
 
         <div class="form-group">
             <label>ModDate</label>
-            <input type="text" class="form-control" name="modDate" th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+            <input type="text" class="form-control" th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
         </div>
         </form>
 
@@ -76,10 +78,22 @@
             })
 
             // 목록으로 이동할때는 page 제외한 모든 파라미터 지우고 처리
-            $(".btn-list").click(function() {
-                var pageInfo = $("input[name='page']");
+            $(".listBtn").click(function() {
+                //var pageInfo = $("input[name='page']");
+                var page=$("input[name='page']");
+                var type=$("input[name='type']");
+                var keyword = $("input[name='keyword']");
 
                 actionForm.empty();
+                actionForm.append(page);
+                actionForm.append(type);
+                actionForm.append(keyword);9
+                actionForm
+                    .attr("action", "/guestbook/list")
+                    .attr("method", "get");
+
+                console.log(actionForm.html());
+                actionForm.submit();
 
 
             })

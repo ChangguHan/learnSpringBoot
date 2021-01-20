@@ -14,6 +14,7 @@ import java.util.stream.IntStream;
  * - 페이지 처리 결과를 Page<Entity>로 반환
  * - 다양한 곳에서 사용할 수 있도록, 제네릭 타입 이용
  * - DTO, ENtity
+ *
  */
 @Data
 public class PageResultDTO<DTO, EN> {
