@@ -80,4 +80,7 @@ public interface MovieService {
 
     }
 
+    // 영화번호 이용해서 MovieDTO 가져옴
+    MovieDTO getMovie(Long mno);
+
 }
