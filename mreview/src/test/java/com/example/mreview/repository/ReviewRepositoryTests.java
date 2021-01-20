@@ -6,11 +6,17 @@ import com.example.mreview.entity.Review;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 @SpringBootTest
 public class ReviewRepositoryTests {
+
+    @Autowired
+    private MemberRepository memberRepository;
 
     @Autowired
     private ReviewRepository reviewRepository;
@@ -37,4 +43,36 @@ public class ReviewRepositoryTests {
             reviewRepository.save(movieReview);
         });
     }
+
+
+    @Test
+    public void testGetMovieReviews() {
+        Movie movie = Movie.builder().mno(92L).build();
+
+        List<Review> result = reviewRepository.findByMovie(movie);
+
+        result.forEach(movieReview -> {
+            System.out.println(movieReview.getReviewnum());
+            System.out.println("\t" + movieReview.getGrade());
+            System.out.println("\t" + movieReview.getText());
+            System.out.println("\t" + movieReview.getMember().getEmail());
+            System.out.println("------------------------");
+
+        });
+    }
+
+    @Commit
+    @Transactional
+    @Test
+    public void testDeleteMember() {
+        Long mid = 2L;
+        Member member = Member.builder().mid(mid).build();
+
+        // review가 FK로 member 참조하고 있으므로
+        // review 먼저 삭제 후 member 삭제 필요 && 트랜잭션 처리 필요
+        reviewRepository.deleteByMember(member);
+        memberRepository.deleteById(mid);
+
+    }
+
 }
