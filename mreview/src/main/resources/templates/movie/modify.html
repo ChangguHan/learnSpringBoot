@@ -11,8 +11,8 @@
         <!--            modify, read에도 계속 가지고 있어야, 나중에 목록 돌아가면 정보 가지고 있을수 있음-->
         <input type="hidden" name="page" th:value="${requestDTO.page}">
         <input type="hidden" name="mno" th:value="${dto.mno}">
-<!--        <input type="hidden" name="type" th:value="${requestDTO.type}">-->
-<!--        <input type="hidden" name="keyword" th:value="${requestDTO.keyword}">-->
+        <input type="hidden" name="type" th:value="${requestDTO.type}">
+        <input type="hidden" name="keyword" th:value="${requestDTO.keyword}">
 
         <div class="form-group">
             <label>Title</label>
@@ -95,7 +95,10 @@
 
 
         <button type="button" class="btn btn-secondary movieModifyBtn">Modify</button>
-            <a th:href="@{/movie/list(page=${requestDTO.page})}">
+            <a th:href="@{/movie/list(page=${requestDTO.page},
+                                      type=${requestDTO.type},
+                                      keyword=${requestDTO.keyword}
+            )}">
                 <button type="button" class="btn btn-success">List</button>
             </a>
         <button type="button" class="btn btn-danger movieRemoveBtn">Remove</button>

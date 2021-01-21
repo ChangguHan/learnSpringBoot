@@ -1,12 +1,17 @@
 package com.example.mreview.service;
 
-import com.example.mreview.dto.*;
+import com.example.mreview.dto.MovieDTO;
+import com.example.mreview.dto.MovieImageDTO;
+import com.example.mreview.dto.PageRequestDTO;
+import com.example.mreview.dto.PageResultDTO;
 import com.example.mreview.entity.Movie;
 import com.example.mreview.entity.MovieImage;
-import com.example.mreview.entity.Review;
+import com.example.mreview.entity.QMovie;
 import com.example.mreview.repository.MovieImageRepository;
 import com.example.mreview.repository.MovieRepository;
 import com.example.mreview.repository.ReviewRepository;
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -43,7 +48,13 @@ public class MovieServiceImpl implements MovieService{
     @Override
     public PageResultDTO<MovieDTO, Object[]> getList(PageRequestDTO requestDTO) {
         Pageable pageable = requestDTO.getPageable(Sort.by("mno").descending());
-        Page<Object[]> result = movieRepository.getListPage(pageable);
+
+
+//        Page<Object[]> result= movieRepository.getListPage(pageable);
+        Page<Object[]> result;
+        if(requestDTO.getType() == null || requestDTO.getKeyword() == null) result= movieRepository.getListPage(pageable);
+        else if(requestDTO.getType().equals("t")) result= movieRepository.getListPage(requestDTO.getKeyword(), pageable);
+        else result= movieRepository.getListPage(pageable);
 
         Function<Object[], MovieDTO> fn = (arr -> entitiesToDTO(
                 (Movie)arr[0],
@@ -188,6 +199,39 @@ public class MovieServiceImpl implements MovieService{
         reviewRepository.deleteByMovie(movie);
 
         movieRepository.deleteById(mno);
+    }
+
+    private BooleanBuilder getSearch(PageRequestDTO requestDTO) {
+        String type = requestDTO.getType();
+        BooleanBuilder booleanBuilder = new BooleanBuilder();
+        QMovie qMovie = QMovie.movie;
+        String keyword = requestDTO.getKeyword();
+
+        BooleanExpression expression = qMovie.mno.gt(0L); // gno > 0 조건만 생성
+        booleanBuilder.and(expression);
+
+        if(type==null || type.trim().length() == 0) { // type 검색 조건이 없는 경우
+            return booleanBuilder;
+        }
+
+        // 검색조건 작성
+        BooleanBuilder conditionBuilder = new BooleanBuilder();
+        if(type.contains("t")) {
+            conditionBuilder.or(qMovie.title.contains(keyword));
+        }
+
+//        if(type.contains("c")) {
+//            conditionBuilder.or(QMovie.content.contains(keyword));
+//        }
+//
+//        if(type.contains("w")) {
+//            conditionBuilder.or(QMovie.writer.contains(keyword));
+//        }Ø
+
+        // 모든조건 통합
+        booleanBuilder.and(conditionBuilder);
+
+        return booleanBuilder;
     }
 
 
