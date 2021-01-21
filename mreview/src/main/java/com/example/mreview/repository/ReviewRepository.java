@@ -3,6 +3,8 @@ package com.example.mreview.repository;
 import com.example.mreview.entity.Member;
 import com.example.mreview.entity.Movie;
 import com.example.mreview.entity.Review;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -15,6 +17,9 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     // type이 FETCH이므로, member를 EAGER로, 나머지를 LAZY로 처리
     @EntityGraph(attributePaths={"member"}, type=EntityGraph.EntityGraphType.FETCH)
     List<Review> findByMovie(Movie movie);
+
+    @Query("select r from Review r where r.movie = :movie")
+    Page<Review> getListPage(Movie movie, Pageable pageable);
 
     // M:N 주의할점
     // '명사'에 해당하는 데이터 삭제시 매핑 테이블의 데이터 삭제 필요
@@ -36,4 +41,10 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
             "from Review mr " +
             "where mr.movie = :movie ")
     void deleteByMovie(Movie movie);
+
+    // JPQL 이용해서 group by 적용 시 리뷰 개수와 평균 평점 구할 수 있음
+//    @Query("select m, mi, avg(coalesce(r.grade,0)), count(r) from Review r "
+//            + "left outer join MovieImage mi on mi.movie = m "
+//            + "left outer join Review r on r.movie = m group by m")
+//    Page<Object[]> getListPage(Pageable pageable);
 }

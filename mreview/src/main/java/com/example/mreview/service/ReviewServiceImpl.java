@@ -30,12 +30,15 @@ public class ReviewServiceImpl implements ReviewService{
     private final ReviewRepository reviewRepository;
 
     @Override
-    public List<ReviewDTO> getListOfMovie(Long mno) {
+    public PageResultDTO<ReviewDTO, Review> getListOfMovie(Long mno, PageRequestDTO requestDTO) {
+        Pageable pageable = requestDTO.getPageable(Sort.by("reviewnum").descending());
+
         Movie movie = Movie.builder().mno(mno).build();
 
-        List<Review> result = reviewRepository.findByMovie(movie);
+        Page<Review> result = reviewRepository.getListPage(movie, pageable);
 
-        return result.stream().map(movieReview -> entitiyToDTO(movieReview)).collect(Collectors.toList());
+        Function<Review, ReviewDTO> fn = (entity -> entitiyToDTO(entity));
+        return new PageResultDTO<>(result, fn);
     }
 
     @Override

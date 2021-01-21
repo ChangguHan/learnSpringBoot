@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public interface ReviewService {
 
     // 영화 모든 리뷰 가져옴
-    List<ReviewDTO> getListOfMovie(Long mno);
+    PageResultDTO<ReviewDTO, Review> getListOfMovie(Long mno, PageRequestDTO requestDTO);
 
     // 영화 리뷰 추가
     Long register(ReviewDTO movieReviewDTO);

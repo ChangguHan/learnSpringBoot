@@ -1,11 +1,9 @@
 package com.example.mreview.service;
 
-import com.example.mreview.dto.MovieDTO;
-import com.example.mreview.dto.MovieImageDTO;
-import com.example.mreview.dto.PageRequestDTO;
-import com.example.mreview.dto.PageResultDTO;
+import com.example.mreview.dto.*;
 import com.example.mreview.entity.Movie;
 import com.example.mreview.entity.MovieImage;
+import com.example.mreview.entity.Review;
 import com.example.mreview.repository.MovieImageRepository;
 import com.example.mreview.repository.MovieRepository;
 import com.example.mreview.repository.ReviewRepository;
@@ -56,6 +54,8 @@ public class MovieServiceImpl implements MovieService{
 
         return new PageResultDTO<>(result, fn);
     }
+
+
 
     @Override
     public MovieDTO getMovie(Long mno) {

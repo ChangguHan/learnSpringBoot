@@ -75,7 +75,6 @@
 
         </div>
 
-
         <div class="reviewModal modal" tableindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -126,13 +125,72 @@
             </div>
         </div>
 
+
         <script th:src="@{/starrr.js}"></script>
         <link th:href="@{/css/starrr.css}" rel="stylesheet">
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
         <script>
+            var mno = [[${dto.mno}]];
+            // 페이지 열리면 리뷰데이터 가져옴
+            function getMovieReviews(param) {
+                function formatTime(str) {
+                    var date = new Date(str);
+
+                    return date.getFullYear() + '/' +
+                        (date.getMonth()+1) + '/' +
+                        date.getDate() + ' ' +
+                        date.getHours() + ':' +
+                        date.getMinutes();
+                }
+
+                $.getJSON("/reviews/"+mno+"/all",param, function(result) {
+                    var str="";
+                    var arr = result.dtoList;
+
+                    $.each(arr, function(idx, review) {
+                        console.log(review);
+
+                        str += '    <div class="card-body" data-reviewnum='+review.reviewnum+' data-mid='+review.mid+'>';
+                        str += '    <h5 class="card-title">'+review.text+' <span>'+review.grade+'</span></h5>';
+                        str += '    <h6 class="card-subtitle mb-2 text-muted">'+review.nickname+'</h6>';
+                        str += '    <p class="card-text">'+formatTime(review.regDate)+'</p>';
+                        str += '    </div>';
+                    });
+
+                    str += '<ul class="pagination h-100 justify-content-center align-items-center">';
+                    if(result.prev){
+                        str += '            <li class="page-item">';
+                        str += '                <a class="page-link" href="javascript:getMovieReviews({page:';
+                        str += (result.start-1);
+                        str += '})" tableindex="-1">Previous</a>';
+                        str += '            </li>';
+                    }
+                    $.each(result.pageList, function(idx, page) {
+                        str += '            <li class="page-item ';
+                        if(result.page == page) {
+                            str += 'active';
+                        }
+                        str += '"><a class="page-link" href="javascript:getMovieReviews({page:' +page + '})" tableindex="-1">'+page+'</a></li>';
+                    });
+
+                    if(result.next){
+                        str += '            <li class="page-item">';
+                        str += '                <a class="page-link" href="javascript:getMovieReviews({page:';
+                        str += (result.end+1);
+                        str += '})" >Next</a>';
+                        str += '            </li>';
+                    }
+                    str += '</ul>';
+
+
+                    $(".reviewList").html(str);
+
+                })
+            };
+
+
             $(document).ready(function(e) {
                 var grade = 0;
-                var mno = [[${dto.mno}]];
                 $('.starrr').starrr({
                     rating:grade,
                     change:function(e,value) {
@@ -180,34 +238,6 @@
 
                  });
 
-                // 페이지 열리면 리뷰데이터 가져옴
-                function getMovieReviews() {
-                    function formatTime(str) {
-                        var date = new Date(str);
-
-                        return date.getFullYear() + '/' +
-                            (date.getMonth()+1) + '/' +
-                            date.getDate() + ' ' +
-                            date.getHours() + ':' +
-                            date.getMinutes();
-                    }
-
-                    $.getJSON("/reviews/"+mno+"/all", function(arr) {
-                        var str="";
-
-                        $.each(arr, function(idx, review) {
-                            console.log(review);
-
-                            str += '    <div class="card-body" data-reviewnum='+review.reviewnum+' data-mid='+review.mid+'>';
-                            str += '    <h5 class="card-title">'+review.text+' <span>'+review.grade+'</span></h5>';
-                            str += '    <h6 class="card-subtitle mb-2 text-muted">'+review.nickname+'</h6>';
-                            str += '    <p class="card-text">'+formatTime(review.regDate)+'</p>';
-                            str += '    </div>';
-                        });
-
-                        $(".reviewList").html(str);
-                    })
-                }
 
                 getMovieReviews();
 

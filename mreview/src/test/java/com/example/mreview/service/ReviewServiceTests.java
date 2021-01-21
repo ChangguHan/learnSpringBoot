@@ -23,12 +23,12 @@ public class ReviewServiceTests {
     public void testGetListOfMovie() {
         System.out.println("============ TEST START ============");
 
-        IntStream.rangeClosed(1,10).forEach(i-> {
-            long count = (long)(Math.random() * 100) + 1; // 1,2,3,4
-            for(ReviewDTO reviewDTO : service.getListOfMovie(count)) {
-                System.out.println(reviewDTO);
-            }
-        });
+//        IntStream.rangeClosed(1,10).forEach(i-> {
+//            long count = (long)(Math.random() * 100) + 1; // 1,2,3,4
+//            for(ReviewDTO reviewDTO : service.getListOfMovie(count)) {
+//                System.out.println(reviewDTO);
+//            }
+//        });
 
         System.out.println("============ TEST EBD ============");
     }

@@ -1,9 +1,6 @@
 package com.example.mreview.service;
 
-import com.example.mreview.dto.MovieDTO;
-import com.example.mreview.dto.MovieImageDTO;
-import com.example.mreview.dto.PageRequestDTO;
-import com.example.mreview.dto.PageResultDTO;
+import com.example.mreview.dto.*;
 import com.example.mreview.entity.Movie;
 import com.example.mreview.entity.MovieImage;
 

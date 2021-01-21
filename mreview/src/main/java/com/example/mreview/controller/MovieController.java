@@ -4,6 +4,7 @@ import com.example.mreview.dto.MovieDTO;
 import com.example.mreview.dto.PageRequestDTO;
 import com.example.mreview.dto.PageResultDTO;
 import com.example.mreview.service.MovieService;
+import com.example.mreview.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Required;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class MovieController {
 
     private final MovieService movieService;
+    private final ReviewService reviewService;
 
     @GetMapping("/register")
     public void register(@ModelAttribute("requestDTO") PageRequestDTO requestDTO) {

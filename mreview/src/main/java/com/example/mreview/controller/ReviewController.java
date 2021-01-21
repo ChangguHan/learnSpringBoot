@@ -2,7 +2,9 @@ package com.example.mreview.controller;
 
 import com.example.mreview.dto.MovieDTO;
 import com.example.mreview.dto.PageRequestDTO;
+import com.example.mreview.dto.PageResultDTO;
 import com.example.mreview.dto.ReviewDTO;
+import com.example.mreview.entity.Review;
 import com.example.mreview.service.MovieService;
 import com.example.mreview.service.ReviewService;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +17,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/reviews")
@@ -26,14 +30,28 @@ public class ReviewController {
     private final ReviewService reviewService;
 
     @GetMapping("/{mno}/all")
-    public ResponseEntity<List<ReviewDTO>> getList(@PathVariable("mno") Long mno) {
+    public PageResultDTO<ReviewDTO, Review> getList(@PathVariable("mno") Long mno, PageRequestDTO requestDTO) {
         log.info("----------list------------");
         log.info("MNO: "+mno);
 
-        List<ReviewDTO> reviewDTOList = reviewService.getListOfMovie(mno);
+//        Map<String, Object> rs = new HashMap<>();
+//
+//        rs.put("result",requestDTO);
+//        rs.put("dtoList", reviewService.getListOfMovie(mno, requestDTO));
 
-        return new ResponseEntity<>(reviewDTOList, HttpStatus.OK);
+        return reviewService.getListOfMovie(mno, requestDTO);
     }
+
+//    @GetMapping("/{mno}/all")
+//    public ResponseEntity<List<ReviewDTO>> getList(@PathVariable("mno") Long mno, PageRequestDTO requestDTO) {
+//        log.info("----------list------------");
+//        log.info("MNO: "+mno);
+//
+//        List<ReviewDTO> reviewDTOList = reviewService.getListOfMovie(mno, requestDTO);
+//
+//        return new ResponseEntity<>(reviewDTOList, HttpStatus.OK);
+//    }
+
 
     @PostMapping("/{mno}")
     public ResponseEntity<Long> addReview(@RequestBody ReviewDTO movieReviewDTO) {
