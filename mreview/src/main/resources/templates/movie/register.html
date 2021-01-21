@@ -24,6 +24,10 @@
 
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+            <a th:href="@{/movie/list(page=${requestDTO.page}
+        )}">
+                <button type="button" class="btn btn-success">List</button>
+            </a>
         </form>
 
         <style>

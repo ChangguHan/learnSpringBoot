@@ -34,6 +34,7 @@ public interface MovieService {
         if(imageDTOList != null && imageDTOList.size() > 0) {
             List<MovieImage> movieImageList = imageDTOList.stream().map(movieImageDTO -> {
                 MovieImage movieImage = MovieImage.builder()
+                                                    .inum(movieImageDTO.getInum())
                                                     .path(movieImageDTO.getPath())
                                                     .imgName(movieImageDTO.getImgName())
                                                     .uuid(movieImageDTO.getUuid())
@@ -66,7 +67,9 @@ public interface MovieService {
                 .build();
 
         List<MovieImageDTO> movieImageDTOList = movieImages.stream().map(movieImage -> {
-            return MovieImageDTO.builder().imgName(movieImage.getImgName())
+            return MovieImageDTO.builder()
+                    .inum(movieImage.getInum())
+                    .imgName(movieImage.getImgName())
                     .path(movieImage.getPath())
                     .uuid(movieImage.getUuid())
                     .build();
@@ -82,5 +85,9 @@ public interface MovieService {
 
     // 영화번호 이용해서 MovieDTO 가져옴
     MovieDTO getMovie(Long mno);
+
+    void modify(MovieDTO dto);
+
+    void remove(Long mno);
 
 }

@@ -27,10 +27,11 @@ public class ReviewRepositoryTests {
         IntStream.rangeClosed(1,200).forEach(i -> {
             //Movie, Reviewer는 임의의값으로 생성
             // 영화번호
-            Long mno = (long)(Math.random() * 100) +1;
+//            Long mno = (long)(Math.random() * 100) +1;
+            Long mno = (long)213;
 
             // 리뷰어번호
-            Long mid = ((long)(Math.random()*100) + 1);
+            Long mid = ((long)(Math.random()*300) + 101);
             Member member = Member.builder().mid(mid).build();
 
             Review movieReview = Review.builder()

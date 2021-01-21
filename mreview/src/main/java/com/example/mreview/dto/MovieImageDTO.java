@@ -13,6 +13,7 @@ import java.net.URLEncoder;
 @NoArgsConstructor
 @Builder
 public class MovieImageDTO {
+    private Long inum;
     private String uuid;
     private String imgName;
     private String path;

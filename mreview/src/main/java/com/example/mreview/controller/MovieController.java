@@ -24,7 +24,7 @@ public class MovieController {
     private final MovieService movieService;
 
     @GetMapping("/register")
-    public void register() {
+    public void register(@ModelAttribute("requestDTO") PageRequestDTO requestDTO) {
     }
 
     @PostMapping("/register")
@@ -37,9 +37,9 @@ public class MovieController {
     }
 
     @GetMapping("/list")
-    public void list(PageRequestDTO pageRequestDTO, Model model) {
-        log.info("pageRequestDTO: " + pageRequestDTO);
-        model.addAttribute("result", movieService.getList(pageRequestDTO));
+    public void list(PageRequestDTO requestDTO, Model model) {
+        log.info("pageRequestDTO: " + requestDTO);
+        model.addAttribute("result", movieService.getList(requestDTO));
     }
 
     @GetMapping({"/read","/modify"})
@@ -48,5 +48,33 @@ public class MovieController {
         MovieDTO movieDTO = movieService.getMovie(mno);
 
         model.addAttribute("dto", movieDTO);
+    }
+
+    @PostMapping("/modify")
+    public String modify(MovieDTO dto, @ModelAttribute("requestDTO") PageRequestDTO requestDTO,
+                         RedirectAttributes redirectAttributes) {
+        log.info("post modify...............");
+        log.info("dto: " + dto);
+
+        movieService.modify(dto);
+
+        redirectAttributes.addAttribute("page", requestDTO.getPage());
+//        redirectAttributes.addAttribute("type", requestDTO.getType());
+//        redirectAttributes.addAttribute("keyword", requestDTO.getKeyword());
+        redirectAttributes.addAttribute("mno", dto.getMno());
+
+        return "redirect:/movie/read";
+    }
+
+
+    @PostMapping("/remove")
+    public String remove(long mno, RedirectAttributes redirectAttributes) {
+        log.info("mno: " + mno);
+
+        movieService.remove(mno);
+
+        redirectAttributes.addFlashAttribute("mno",mno);
+        return "redirect:/movie/list";
+
     }
 }

@@ -10,6 +10,7 @@
         <!--페이지 번호-->
         <!--            modify, read에도 계속 가지고 있어야, 나중에 목록 돌아가면 정보 가지고 있을수 있음-->
         <input type="hidden" name="page" th:value="${requestDTO.page}">
+        <input type="hidden" name="mno" th:value="${dto.mno}">
 <!--        <input type="hidden" name="type" th:value="${requestDTO.type}">-->
 <!--        <input type="hidden" name="keyword" th:value="${requestDTO.keyword}">-->
 
@@ -26,6 +27,16 @@
         <div class="form-group">
             <label>Avg</label>
             <input type="text" class="form-control" name="avg" th:value="${dto.avg}" readonly>
+        </div>
+
+        <div class="form-group fileForm">
+            <label>Image Files</label>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input files" id="fileInput" multiple>
+                <label class="custom-file-label" data-browse="Browse"></label>
+
+            </div>
+
         </div>
         <style>
             .uploadResult {
@@ -55,8 +66,21 @@
         </style>
         <div class="uploadResult">
             <ul>
-                <li th:each="movieImage:${dto.imageDTOList}" th:data-file="${movieImage.getThumbNailURL()}">
-                    <img th:if="${movieImage.path != null}" th:src="|/display?fileName=${movieImage.getThumbNailURL()}|">
+                <li th:each="num : ${#numbers.sequence(0,dto.imageDTOList.size()-1)}"
+                    th:data-inum="${dto.imageDTOList.get(num).inum}"
+                    th:data-name="${dto.imageDTOList.get(num).imgName}"
+                    th:data-path="${dto.imageDTOList.get(num).path}"
+                    th:data-uuid="${dto.imageDTOList.get(num).uuid}"
+                >
+                    <div>
+                        <button type="button" th:data-file="${dto.imageDTOList.get(num).getImageURL()}"
+                                class="btn-warning btn-sm">X</button><br>
+                        <img th:src="|/display?fileName=${dto.imageDTOList.get(num).getThumbNailURL()}|">
+                        <input type="hidden" th:name="${'imageDTOList['+num +'].inum'}" th:value="${dto.imageDTOList.get(num).inum}">
+                        <input type="hidden" th:name="${'imageDTOList['+num +'].imageName'}" th:value="${dto.imageDTOList.get(num).imgName}">
+                        <input type="hidden" th:name="${'imageDTOList['+num +'].path'}" th:value="${dto.imageDTOList.get(num).path}">
+                        <input type="hidden" th:name="${'imageDTOList['+num +'].uuid'}" th:value="${dto.imageDTOList.get(num).uuid}">
+                    </div>
                 </li>
             </ul>
         </div>
@@ -71,7 +95,9 @@
 
 
         <button type="button" class="btn btn-secondary movieModifyBtn">Modify</button>
-        <button type="button" class="btn btn-success movieListBtn">List</button>
+            <a th:href="@{/movie/list(page=${requestDTO.page})}">
+                <button type="button" class="btn btn-success">List</button>
+            </a>
         <button type="button" class="btn btn-danger movieRemoveBtn">Remove</button>
 
         <div class="list-group reviewList">
@@ -133,9 +159,11 @@
         <link th:href="@{/css/starrr.css}" rel="stylesheet">
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
         <script>
+            var grade = 0;
+            var mno = [[${dto.mno}]];
+            var deleteImg = [];
+            var addImg = [];
             $(document).ready(function(e) {
-                var grade = 0;
-                var mno = [[${dto.mno}]];
                 $('.starrr').starrr({
                     rating:grade,
                     change:function(e,value) {
@@ -145,146 +173,283 @@
                         }
                     }
                 });
+            });
+            var reviewModal = $(".reviewModal");
+            var inputMid = $('input[name="mid"]');
+            var inputText = $('input[name="text"]');
 
-                // $(".reviewModal").modal("show");
+            $(".reviewAddBtn").click(function() {
+                inputMid.val("");
+                inputText.val("");
 
-                var reviewModal = $(".reviewModal");
-                var inputMid = $('input[name="mid"]');
-                var inputText = $('input[name="text"]');
+                $(".reviewRemoveBtn, .reviewModifyBtn").hide();
+                $(".reviewSaveBtn").show();
 
-                $(".reviewAddBtn").click(function() {
-                    inputMid.val("");
-                    inputText.val("");
-
-                    $(".reviewRemoveBtn, .reviewModifyBtn").hide();
-                    $(".reviewSaveBtn").show();
-
-                    reviewModal.modal('show');
-                });
+                reviewModal.modal('show');
+            });
 
 
-                $(".reviewSaveBtn").click(function() {
-                    var data = {mno:mno, grade:grade, text:inputText.val(), mid:inputMid.val()}
+            $(".reviewSaveBtn").click(function() {
+                var data = {mno:mno, grade:grade, text:inputText.val(), mid:inputMid.val()}
 
-                    console.log(data);
+                console.log(data);
 
-                    $.ajax({
-                        url:'/reviews/'+mno,
-                        type:"POST",
-                        data:JSON.stringify(data),
-                        contentType:"application/json; charset=utf-8",
-                        dataType:"text",
-                        success: function(result) {
-                            console.log("result: " + result);
-                            self.location.reload();
-                        }
-                    })
-                    reviewModal.modal('hide');
-
-                 });
-
-                // 페이지 열리면 리뷰데이터 가져옴
-                function getMovieReviews() {
-                    function formatTime(str) {
-                        var date = new Date(str);
-
-                        return date.getFullYear() + '/' +
-                            (date.getMonth()+1) + '/' +
-                            date.getDate() + ' ' +
-                            date.getHours() + ':' +
-                            date.getMinutes();
+                $.ajax({
+                    url:'/reviews/'+mno,
+                    type:"POST",
+                    data:JSON.stringify(data),
+                    contentType:"application/json; charset=utf-8",
+                    dataType:"text",
+                    success: function(result) {
+                        console.log("result: " + result);
+                        self.location.reload();
                     }
+                })
+                reviewModal.modal('hide');
 
-                    $.getJSON("/reviews/"+mno+"/all", function(arr) {
-                        var str="";
+             });
 
-                        $.each(arr, function(idx, review) {
-                            console.log(review);
+            // 페이지 열리면 리뷰데이터 가져옴
+            function getMovieReviews() {
+                function formatTime(str) {
+                    var date = new Date(str);
 
-                            str += '    <div class="card-body" data-reviewnum='+review.reviewnum+' data-mid='+review.mid+'>';
-                            str += '    <h5 class="card-title">'+review.text+' <span>'+review.grade+'</span></h5>';
-                            str += '    <h6 class="card-subtitle mb-2 text-muted">'+review.nickname+'</h6>';
-                            str += '    <p class="card-text">'+formatTime(review.regDate)+'</p>';
-                            str += '    </div>';
-                        });
-
-                        $(".reviewList").html(str);
-                    })
+                    return date.getFullYear() + '/' +
+                        (date.getMonth()+1) + '/' +
+                        date.getDate() + ' ' +
+                        date.getHours() + ':' +
+                        date.getMinutes();
                 }
 
-                getMovieReviews();
+                $.getJSON("/reviews/"+mno+"/all", function(arr) {
+                    var str="";
 
-                // modify review
-                var reviewnum;
-                $(".reviewList").on("click",".card-body", function() {
-                    $(".reviewSaveBtn").hide();
-                    $(".reviewRemoveBtn, .reviewModifyBtn").show();
+                    $.each(arr, function(idx, review) {
+                        console.log(review);
 
-                    var targetReview = $(this);
+                        str += '    <div class="card-body" data-reviewnum='+review.reviewnum+' data-mid='+review.mid+'>';
+                        str += '    <h5 class="card-title">'+review.text+' <span>'+review.grade+'</span></h5>';
+                        str += '    <h6 class="card-subtitle mb-2 text-muted">'+review.nickname+'</h6>';
+                        str += '    <p class="card-text">'+formatTime(review.regDate)+'</p>';
+                        str += '    </div>';
+                    });
 
-                    reviewnum = targetReview.data("reviewnum");
-
-                    console.log("reviewnum: " + reviewnum);
-                    inputMid.val(targetReview.data("mid"));
-                    inputText.val(targetReview.find('.card-title').clone().children().remove().end().text());
-
-                    var grade = targetReview.find('.card-title span').html();
-                    $(".starrr a:nth-child("+grade+")").trigger('click');
-                    $('.reviewModal').modal('show');
+                    $(".reviewList").html(str);
                 })
+            }
+
+            getMovieReviews();
+
+            // modify review
+            var reviewnum;
+            $(".reviewList").on("click",".card-body", function() {
+                $(".reviewSaveBtn").hide();
+                $(".reviewRemoveBtn, .reviewModifyBtn").show();
+
+                var targetReview = $(this);
+
+                reviewnum = targetReview.data("reviewnum");
+
+                console.log("reviewnum: " + reviewnum);
+                inputMid.val(targetReview.data("mid"));
+                inputText.val(targetReview.find('.card-title').clone().children().remove().end().text());
+
+                var grade = targetReview.find('.card-title span').html();
+                $(".starrr a:nth-child("+grade+")").trigger('click');
+                $('.reviewModal').modal('show');
+            })
 
 
-                $(".reviewModifyBtn").on("click", function() {
-                    var data = {reviewnum: reviewnum, mno:mno, grade:grade, text:inputText.val(), mid:inputMid.val()}
+            $(".reviewModifyBtn").on("click", function() {
+                var data = {reviewnum: reviewnum, mno:mno, grade:grade, text:inputText.val(), mid:inputMid.val()}
 
-                    console.log(data);
+                console.log(data);
 
-                    $.ajax({
-                        url:'/reviews/'+mno+"/"+reviewnum,
-                        type:"PUT",
-                        data:JSON.stringify(data),
-                        contentType:"application/json; charset=utf-8",
-                        dataType:"text",
-                        success: function(result) {
-                            console.log("result: "+ result);
-                            self.location.reload();
-                        }
-                    })
-                    reviewModal.modal('hide');
+                $.ajax({
+                    url:'/reviews/'+mno+"/"+reviewnum,
+                    type:"PUT",
+                    data:JSON.stringify(data),
+                    contentType:"application/json; charset=utf-8",
+                    dataType:"text",
+                    success: function(result) {
+                        console.log("result: "+ result);
+                        self.location.reload();
+                    }
                 })
+                reviewModal.modal('hide');
+            })
 
 
-                $(".reviewRemoveBtn").on("click", function() {
-                    var data = {reviewnum: reviewnum}
+            $(".reviewRemoveBtn").on("click", function() {
+                var data = {reviewnum: reviewnum}
 
-                    console.log(data);
+                console.log(data);
 
-                    $.ajax({
-                        url:'/reviews/'+mno+"/"+reviewnum,
-                        type:"DELETE",
-                        data:JSON.stringify(data),
-                        contentType:"application/json; charset=utf-8",
-                        dataType:"text",
-                        success: function(result) {
-                            console.log("result: "+ result);
-                            self.location.reload();
-                        }
-                    })
-                    reviewModal.modal('hide');
+                $.ajax({
+                    url:'/reviews/'+mno+"/"+reviewnum,
+                    type:"DELETE",
+                    data:JSON.stringify(data),
+                    contentType:"application/json; charset=utf-8",
+                    dataType:"text",
+                    success: function(result) {
+                        console.log("result: "+ result);
+                        self.location.reload();
+                    }
+                })
+                reviewModal.modal('hide');
+            });
+
+            // 영화 수정 기능
+            $(".movieModifyBtn").click(function() {
+                if(!confirm("수정하시겠습니까?")) {
+                    return;
+                }
+
+                var str="";
+                $(".uploadResult li").each(function(i, obj) {
+                    var target = $(obj);
+
+                    str += "<input type='hidden' name='imageDTOList["+ i + "].imgName' value='"+target.data('name') + "'>";
+                    str += "<input type='hidden' name='imageDTOList["+ i + "].path' value='"+target.data('path') + "'>";
+                    str += "<input type='hidden' name='imageDTOList["+ i + "].uuid' value='"+target.data('uuid') + "'>";
                 });
 
-                // 사진클릭 시 확대
-                $(".uploadResult li").click(function() {
-                    var file=$(this).data('file');
+                // 태그 추가된것 확인 후 comment 제거
+                $(".box").html(str);
 
-                    console.log(file);
+                $("form")
+                    .attr("action", "/movie/modify")
+                    .attr("method", "post")
+                    .submit();
 
-                    $('.imageModal .modal-body').html("<img style='width:100%' src='/display?fileName="+file+"&size=1' >")
-                    $(".imageModal").modal("show");
+
+                // 이미지 삭제
+                $.each(deleteImg, function(idx, eimg) {
+                    var targetFile = eimg.targetFile;
+
+                    $.ajax({
+                        url: '/removeFile',
+                        data: {fileName:targetFile},
+                        dataType: 'text',
+                        type: 'POST',
+                        success: function(result) {
+                            console.log("delete: " + targetFile);
+                        }
+                    });
+                });
+
+                deleteImg = [];
+            });
+
+
+            // 이미지 수정기능
+
+            var regex = new RegExp("(.*?)\.(exe|sh|zip|alz|tiff)$");
+            var maxSize = 10485760; // 10MB
+
+            function checkExtension(fileName, fileSize) {
+                if(fileSize > maxSize) {
+                    alert("파일 사이즈 초과");
+                    return false;
+                }
+
+                if(regex.test(fileName)) {
+                    alert("해당 종류 파일은 업로드할 수 없습니다.");
+                    return false;
+                }
+                return true;
+            }
+
+            //파일업로드 클래스 자동 업로드 및 화면 띄우기
+            $(".custom-file-input").on("change",function() {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+
+                var formData = new FormData();
+                var inputFile = $(this);
+                var files = inputFile[0].files;
+                var appended = false;
+
+                for(var i=0; i<files.length; i++) {
+                    if(!checkExtension(files[i].name, files[i].size)) {
+                        return false;
+                    }
+                    console.log(files[i]);
+                    formData.append("uploadFiles", files[i]);
+                    appended = true;
+                }
+
+                if(!appended) return; // 업로드 안하면
+
+                for(var value of formData.values()) console.log(value);
+
+                // ajax 업로드 부분
+                $.ajax({
+                    url: '/uploadAjax',
+                    processData: false,
+                    contentType: false, // 파일 업로드는 multipart/form-data 타입 사용 위해서 flase
+                    data: formData,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(result) {
+                        showResult(result);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(textStatus);
+                    }
+
+                });
+            });
+
+
+            function showResult(uploadResultArr) {
+                var uploadUL = $(".uploadResult ul");
+                var str="";
+                var startIdx = uploadUL.children().length;
+                $(uploadResultArr).each(function(i, obj) {
+                    str += "<li data-inum='"+obj.inum +" data-name='" + obj.fileName + "' data-path='" + obj.folderPath + "' data-uuid='"+obj.uuid+"'>";
+                    str += "<div>";
+                    str += "<button type='button' data-file=\'" + obj.imageURL + "\' ";
+                    str += "class='btn-warning btn-sm'>X</button><br>"
+                    str += "<img src='/display?fileName=" + obj.thumbnailURL + "'>";
+                    //str += "<input type='hidden' name='imageDTOList[" + startIdx+ "].inum' value='"+obj.inum+"'>";
+                    str += "<input type='hidden' name='imageDTOList[" + startIdx+ "].imgName' value='"+obj.fileName+"'>";
+                    str += "<input type='hidden' name='imageDTOList[" + startIdx+ "].path' value='"+obj.folderPath+"'>";
+                    str += "<input type='hidden' name='imageDTOList[" + startIdx+ "].uuid' value='"+obj.uuid+"'>";
+                    str += "</div>";
+                    str += "</li>";
+
+                    startIdx++;
                 })
 
+                uploadUL.append(str);
+            }
+
+            // 삭제 버튼
+            $(".uploadResult").on("click", "li button", function(e) {
+                console.log("delete file");
+
+                var targetFile = $(this).data("file");
+
+                var targetLi = $(this).closest("li");
+
+                deleteImg.push({targetFile : targetFile, targetLi: targetLi});
+
+                targetLi.remove();
 
             });
+
+
+            // 삭제버튼
+            var actionForm = $("form");
+            $(".movieRemoveBtn").click(function() {
+                actionForm
+                    .attr("action","/movie/remove")
+                    .attr("method","post");
+                actionForm.submit();
+            });
+
+
 
         </script>
 
