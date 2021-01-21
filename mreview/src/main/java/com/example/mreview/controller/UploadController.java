@@ -100,20 +100,49 @@ public class UploadController {
     }
 
     // 업로드 이미지 출력
-    @GetMapping("/display")
-    public ResponseEntity<byte[]> getFile(String fileName) {
-        ResponseEntity<byte[]> result = null;
+//    @GetMapping("/display")
+//    public ResponseEntity<byte[]> getFile(String fileName) {
+//        ResponseEntity<byte[]> result = null;
+//
+//        try {
+//            String srcFileName = URLDecoder.decode(fileName, "UTF-8");
+//            log.info("fileName: " + srcFileName);
+//            File file = new File(uploadPath + File.separator + srcFileName);
+//
+//            log.info("file: " + file);
+//
+//            HttpHeaders header = new HttpHeaders();
+//
+//            // MIME타입 처리, java.nio.file 패키지 probeContentType() 사용
+//            header.add("Content-Type", Files.probeContentType(file.toPath()));
+//            // 파일 데이터 처리
+//            result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+//
+//        } catch (Exception e) {
+//            log.error(e.getMessage());
+//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//
+//        return result;
+//    }
 
+    @GetMapping("/display")
+    public ResponseEntity<byte[]> getFile(String fileName, String size) {
+        ResponseEntity<byte[]> result = null;
         try {
             String srcFileName = URLDecoder.decode(fileName, "UTF-8");
             log.info("fileName: " + srcFileName);
-            File file = new File(uploadPath + File.separator + srcFileName);
+            File file = new File(uploadPath + File.separator +srcFileName);
 
-            log.info("file: " + file);
+            if(size != null && size.equals("1")) {
+                file = new File(file.getParent(), file.getName().substring(2));
+            }
+
+            log.info("file: " +file);
 
             HttpHeaders header = new HttpHeaders();
 
-            // MIME타입 처리, java.nio.file 패키지 probeContentType() 사용
+            // MIME
             header.add("Content-Type", Files.probeContentType(file.toPath()));
             // 파일 데이터 처리
             result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
@@ -121,10 +150,12 @@ public class UploadController {
         } catch (Exception e) {
             log.error(e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
         }
 
         return result;
     }
+
 
     // 업로드 파일 지우기
     @PostMapping("/removeFile")
