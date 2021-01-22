@@ -33,27 +33,27 @@ public class ReviewServiceTests {
         System.out.println("============ TEST EBD ============");
     }
 
-    @Test
-    public void testRegister() {
-        System.out.println("============ TEST START ============");
-
-
-        long count = (long)(Math.random() * 100) + 1; // 1,2,3,4
-
-        Optional<Review> result = reviewRepository.findById(count);
-
-        if(result.isPresent()) {
-
-            Review movieReview = result.get();
-            System.out.println(movieReview);
-            ReviewDTO reviewDTO = service.entitiyToDTO(movieReview);
-            reviewDTO.setReviewnum(count + 100);
-            System.out.println(service.register(reviewDTO));
-
-        }
-
-        System.out.println("============ TEST EBD ============");
-    }
-
+//    @Test
+//    public void testRegister() {
+//        System.out.println("============ TEST START ============");
+//
+//
+//        long count = (long)(Math.random() * 100) + 1; // 1,2,3,4
+//
+//        Optional<Review> result = reviewRepository.findById(count);
+//
+//        if(result.isPresent()) {
+//
+//            Review movieReview = result.get();
+//            System.out.println(movieReview);
+//            ReviewDTO reviewDTO = service.entitiyToDTO(movieReview);
+//            reviewDTO.setReviewnum(count + 100);
+//            System.out.println(service.register(reviewDTO));
+//
+//        }
+//
+//        System.out.println("============ TEST EBD ============");
+//    }
+//
 
 }

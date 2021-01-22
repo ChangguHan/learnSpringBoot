@@ -1,0 +1,66 @@
+com/example/mreview/dto/UploadResultDTO.java
+ com.example.mreview.dto.UploadResultDTO
+com/example/mreview/dto/PageRequestDTO.java
+ com.example.mreview.dto.PageRequestDTO
+ com.example.mreview.dto.PageRequestDTO$PageRequestDTOBuilder
+com/example/mreview/repository/ReviewRepository.java
+ com.example.mreview.repository.ReviewRepository
+com/example/mreview/entity/Movie.java
+ com.example.mreview.entity.Movie
+ com.example.mreview.entity.Movie$MovieBuilder
+com/example/mreview/controller/UploadController.java
+ com.example.mreview.controller.UploadController
+com/example/mreview/entity/QMovieImage.java
+ com.example.mreview.entity.QMovieImage
+com/example/mreview/ServletInitializer.java
+ com.example.mreview.ServletInitializer
+com/example/mreview/dto/MovieDTO.java
+ com.example.mreview.dto.MovieDTO
+ com.example.mreview.dto.MovieDTO$MovieDTOBuilder
+com/example/mreview/service/ReviewServiceImpl.java
+ com.example.mreview.service.ReviewServiceImpl
+com/example/mreview/service/MovieServiceImpl.java
+ com.example.mreview.service.MovieServiceImpl
+com/example/mreview/dto/ReviewDTO.java
+ com.example.mreview.dto.ReviewDTO
+ com.example.mreview.dto.ReviewDTO$ReviewDTOBuilder
+com/example/mreview/service/MovieService.java
+ com.example.mreview.service.MovieService
+com/example/mreview/service/ReviewService.java
+ com.example.mreview.service.ReviewService
+com/example/mreview/repository/MovieImageRepository.java
+ com.example.mreview.repository.MovieImageRepository
+com/example/mreview/entity/BaseEntity.java
+ com.example.mreview.entity.BaseEntity
+com/example/mreview/dto/PageResultDTO.java
+ com.example.mreview.dto.PageResultDTO
+com/example/mreview/repository/MovieRepository.java
+ com.example.mreview.repository.MovieRepository
+com/example/mreview/entity/QReview.java
+ com.example.mreview.entity.QReview
+com/example/mreview/dto/MovieImageDTO.java
+ com.example.mreview.dto.MovieImageDTO
+ com.example.mreview.dto.MovieImageDTO$MovieImageDTOBuilder
+com/example/mreview/entity/Member.java
+ com.example.mreview.entity.Member
+ com.example.mreview.entity.Member$MemberBuilder
+com/example/mreview/entity/QMovie.java
+ com.example.mreview.entity.QMovie
+com/example/mreview/entity/QBaseEntity.java
+ com.example.mreview.entity.QBaseEntity
+com/example/mreview/entity/Review.java
+ com.example.mreview.entity.Review
+ com.example.mreview.entity.Review$ReviewBuilder
+com/example/mreview/controller/ReviewController.java
+ com.example.mreview.controller.ReviewController
+com/example/mreview/repository/MemberRepository.java
+ com.example.mreview.repository.MemberRepository
+com/example/mreview/entity/QMember.java
+ com.example.mreview.entity.QMember
+com/example/mreview/entity/MovieImage.java
+ com.example.mreview.entity.MovieImage
+ com.example.mreview.entity.MovieImage$MovieImageBuilder
+com/example/mreview/controller/MovieController.java
+ com.example.mreview.controller.MovieController
+com/example/mreview/MreviewApplication.java
+ com.example.mreview.MreviewApplication

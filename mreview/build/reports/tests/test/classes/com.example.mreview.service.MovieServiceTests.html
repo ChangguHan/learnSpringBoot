@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - MovieServiceTests</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>MovieServiceTests</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.example.mreview.service.html">com.example.mreview.service</a> &gt; MovieServiceTests</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.032s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">testGetMovie()</td>
+<td class="success">0.032s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>2021-01-22 13:25:59.202  INFO 7808 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.example.mreview.service.MovieServiceTests], using SpringBootContextLoader
+2021-01-22 13:25:59.203  INFO 7808 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.example.mreview.service.MovieServiceTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-01-22 13:25:59.204  INFO 7808 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.mreview.service.MovieServiceTests]: MovieServiceTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-01-22 13:25:59.205  INFO 7808 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.mreview.MreviewApplication for test class com.example.mreview.service.MovieServiceTests
+2021-01-22 13:25:59.206  INFO 7808 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2021-01-22 13:25:59.206  INFO 7808 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@375af267, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@1f4c06, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@1231e239, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@6e9a00cd, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@eb30eb3, org.springframework.test.context.support.DirtiesContextTestExecutionListener@74361c1f, org.springframework.test.context.transaction.TransactionalTestExecutionListener@698b188a, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@57a9f11e, org.springframework.test.context.event.EventPublishingTestExecutionListener@4179abce, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@56b911a, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@34958675, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@2caca0f8, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@20075978, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@793def23, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@6103685f]
+Hibernate: 
+    select
+        movie0_.mno as col_0_0_,
+        movieimage1_.inum as col_1_0_,
+        avg(coalesce(review2_.grade,
+        0)) as col_2_0_,
+        count(review2_.reviewnum) as col_3_0_,
+        movie0_.mno as mno1_1_0_,
+        movieimage1_.inum as inum1_2_1_,
+        movie0_.moddate as moddate2_1_0_,
+        movie0_.regdate as regdate3_1_0_,
+        movie0_.title as title4_1_0_,
+        movieimage1_.img_name as img_name2_2_1_,
+        movieimage1_.movie_mno as movie_mn5_2_1_,
+        movieimage1_.path as path3_2_1_,
+        movieimage1_.uuid as uuid4_2_1_ 
+    from
+        movie movie0_ 
+    left outer join
+        movie_image movieimage1_ 
+            on (
+                movieimage1_.movie_mno=movie0_.mno
+            ) 
+    left outer join
+        review review2_ 
+            on (
+                review2_.movie_mno=movie0_.mno
+            ) 
+    where
+        movie0_.mno=? 
+    group by
+        movieimage1_.inum
+MovieDTO(mno=102, title=Movie...2, imageDTOList=[MovieImageDTO(inum=328, uuid=ac3ea9cb-b180-4bbc-8020-af8c9b688dd3, imgName=test0.jpg, path=null)], avg=0.0, reviewCnt=0, regDate=2021-01-22T13:21:31.884435, modDate=2021-01-22T13:21:31.884435)
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 6.7.1</a> at 2021. 1. 22. 오후 1:25:59</p>
+</div>
+</div>
+</body>
+</html>

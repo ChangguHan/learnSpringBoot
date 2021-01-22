@@ -1,0 +1,3175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.mreview.repository.MovieRepositoryTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2021-01-22T04:25:56" hostname="AL01590068.local" time="3.039">
+  <properties/>
+  <testcase name="testBetMovieWithAll()" classname="com.example.mreview.repository.MovieRepositoryTests" time="0.068"/>
+  <testcase name="insertMovies()" classname="com.example.mreview.repository.MovieRepositoryTests" time="2.928"/>
+  <testcase name="testListPage()" classname="com.example.mreview.repository.MovieRepositoryTests" time="0.041"/>
+  <system-out><![CDATA[2021-01-22 13:25:56.130  INFO 7808 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.example.mreview.repository.MovieRepositoryTests], using SpringBootContextLoader
+2021-01-22 13:25:56.132  INFO 7808 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.example.mreview.repository.MovieRepositoryTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-01-22 13:25:56.132  INFO 7808 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.mreview.repository.MovieRepositoryTests]: MovieRepositoryTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-01-22 13:25:56.134  INFO 7808 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.mreview.MreviewApplication for test class com.example.mreview.repository.MovieRepositoryTests
+2021-01-22 13:25:56.135  INFO 7808 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2021-01-22 13:25:56.136  INFO 7808 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@5c0621cf, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@5ac93dec, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@76593491, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@616977f5, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@c0c2a4e, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1fb9507e, org.springframework.test.context.transaction.TransactionalTestExecutionListener@207b02a4, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@a871f81, org.springframework.test.context.event.EventPublishingTestExecutionListener@67b40ac5, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@32db8ced, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@4acdd630, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@7804a3ff, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@3fa16c18, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@517333e5, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@75ab13ad]
+Hibernate: 
+    select
+        movie0_.mno as col_0_0_,
+        movieimage1_.inum as col_1_0_,
+        avg(coalesce(review2_.grade,
+        0)) as col_2_0_,
+        count(review2_.reviewnum) as col_3_0_,
+        movie0_.mno as mno1_1_0_,
+        movieimage1_.inum as inum1_2_1_,
+        movie0_.moddate as moddate2_1_0_,
+        movie0_.regdate as regdate3_1_0_,
+        movie0_.title as title4_1_0_,
+        movieimage1_.img_name as img_name2_2_1_,
+        movieimage1_.movie_mno as movie_mn5_2_1_,
+        movieimage1_.path as path3_2_1_,
+        movieimage1_.uuid as uuid4_2_1_ 
+    from
+        movie movie0_ 
+    left outer join
+        movie_image movieimage1_ 
+            on (
+                movieimage1_.movie_mno=movie0_.mno
+            ) 
+    left outer join
+        review review2_ 
+            on (
+                review2_.movie_mno=movie0_.mno
+            ) 
+    where
+        movie0_.mno=? 
+    group by
+        movieimage1_.inum
+[[Ljava.lang.Object;@442c9c0a, [Ljava.lang.Object;@bbb66d2, [Ljava.lang.Object;@70595342]
+[Movie(mno=94, title=Movie...94), MovieImage(inum=301, uuid=00b1fd81-693e-474e-a280-24d20f33a194, imgName=test0.jpg, path=null), 2.75, 4]
+[Movie(mno=94, title=Movie...94), MovieImage(inum=302, uuid=d613fc26-d029-40fa-8ed2-d1645e329471, imgName=test1.jpg, path=null), 2.75, 4]
+[Movie(mno=94, title=Movie...94), MovieImage(inum=303, uuid=635824a2-4392-429f-8dfb-a048de79c5e8, imgName=test2.jpg, path=null), 2.75, 4]
+2021-01-22 13:25:56.222  INFO 7808 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@1326da53 testClass = MovieRepositoryTests, testInstance = com.example.mreview.repository.MovieRepositoryTests@1e49bfd5, testMethod = insertMovies@MovieRepositoryTests, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@7ae09f33 testClass = MovieRepositoryTests, locations = '{}', classes = '{class com.example.mreview.MreviewApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@6a586286, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@582e5627, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@7e9c5bc3, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@7fc35e8e, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2857041, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@6f5c90f6], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@152dc9fc]; rollback [false]
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+-------
+Hibernate: 
+    insert 
+    into
+        movie
+        (moddate, regdate, title) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        movie_image
+        (img_name, movie_mno, path, uuid) 
+    values
+        (?, ?, ?, ?)
+============
+2021-01-22 13:25:59.134  INFO 7808 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Committed transaction for test: [DefaultTestContext@1326da53 testClass = MovieRepositoryTests, testInstance = com.example.mreview.repository.MovieRepositoryTests@1e49bfd5, testMethod = insertMovies@MovieRepositoryTests, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@7ae09f33 testClass = MovieRepositoryTests, locations = '{}', classes = '{class com.example.mreview.MreviewApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@6a586286, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@582e5627, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@7e9c5bc3, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@7fc35e8e, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2857041, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@6f5c90f6], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]
+Hibernate: 
+    select
+        movie0_.mno as col_0_0_,
+        movieimage1_.inum as col_1_0_,
+        avg(coalesce(review2_.grade,
+        0)) as col_2_0_,
+        count(review2_.reviewnum) as col_3_0_,
+        movie0_.mno as mno1_1_0_,
+        movieimage1_.inum as inum1_2_1_,
+        movie0_.moddate as moddate2_1_0_,
+        movie0_.regdate as regdate3_1_0_,
+        movie0_.title as title4_1_0_,
+        movieimage1_.img_name as img_name2_2_1_,
+        movieimage1_.movie_mno as movie_mn5_2_1_,
+        movieimage1_.path as path3_2_1_,
+        movieimage1_.uuid as uuid4_2_1_ 
+    from
+        movie movie0_ 
+    left outer join
+        movie_image movieimage1_ 
+            on (
+                movieimage1_.movie_mno=movie0_.mno
+            ) 
+    left outer join
+        review review2_ 
+            on (
+                review2_.movie_mno=movie0_.mno
+            ) 
+    group by
+        movie0_.mno 
+    order by
+        movie0_.mno desc limit ?
+Hibernate: 
+    select
+        count(movie0_.mno) as col_0_0_ 
+    from
+        movie movie0_ 
+    left outer join
+        movie_image movieimage1_ 
+            on (
+                movieimage1_.movie_mno=movie0_.mno
+            ) 
+    left outer join
+        review review2_ 
+            on (
+                review2_.movie_mno=movie0_.mno
+            ) 
+    group by
+        movie0_.mno
+[Movie(mno=500, title=Movie...100), MovieImage(inum=1526, uuid=f7679c7e-b566-4737-9c8f-d7d3fceb778f, imgName=test0.jpg, path=null), 0.0, 0]
+[Movie(mno=499, title=Movie...99), MovieImage(inum=1523, uuid=64b14ee6-9472-4a5e-bc5c-5d30386248ed, imgName=test0.jpg, path=null), 0.0, 0]
+[Movie(mno=498, title=Movie...98), MovieImage(inum=1522, uuid=2eb96e11-eba1-4e49-a5ff-af3ce5224485, imgName=test0.jpg, path=null), 0.0, 0]
+[Movie(mno=497, title=Movie...97), MovieImage(inum=1520, uuid=c299c589-a82f-44f6-bf0c-ffb928b21d6d, imgName=test0.jpg, path=null), 0.0, 0]
+[Movie(mno=496, title=Movie...96), MovieImage(inum=1519, uuid=5b5facd2-cb21-44ec-aa39-e1954764a5f8, imgName=test0.jpg, path=null), 0.0, 0]
+[Movie(mno=495, title=Movie...95), MovieImage(inum=1514, uuid=9b7c0550-2b68-4a80-8f89-9dd515cbf91a, imgName=test0.jpg, path=null), 0.0, 0]
+[Movie(mno=494, title=Movie...94), MovieImage(inum=1512, uuid=66e98df7-c108-4b15-937e-f1d5f47e2d1d, imgName=test0.jpg, path=null), 0.0, 0]
+[Movie(mno=493, title=Movie...93), MovieImage(inum=1507, uuid=0e9793fc-7281-4637-8c6d-ae988c66f1ea, imgName=test0.jpg, path=null), 0.0, 0]
+[Movie(mno=492, title=Movie...92), MovieImage(inum=1505, uuid=64659205-e026-44e1-81cc-aa70c9c8c3ea, imgName=test0.jpg, path=null), 0.0, 0]
+[Movie(mno=491, title=Movie...91), MovieImage(inum=1504, uuid=6b772656-4434-4e62-ada6-094ccc9af8b5, imgName=test0.jpg, path=null), 0.0, 0]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

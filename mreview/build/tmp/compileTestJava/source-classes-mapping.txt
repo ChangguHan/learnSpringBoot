@@ -1,0 +1,12 @@
+com/example/mreview/repository/MovieRepositoryTests.java
+ com.example.mreview.repository.MovieRepositoryTests
+com/example/mreview/repository/MemberRepositoryTests.java
+ com.example.mreview.repository.MemberRepositoryTests
+com/example/mreview/service/MovieServiceTests.java
+ com.example.mreview.service.MovieServiceTests
+com/example/mreview/MreviewApplicationTests.java
+ com.example.mreview.MreviewApplicationTests
+com/example/mreview/service/ReviewServiceTests.java
+ com.example.mreview.service.ReviewServiceTests
+com/example/mreview/repository/ReviewRepositoryTests.java
+ com.example.mreview.repository.ReviewRepositoryTests
