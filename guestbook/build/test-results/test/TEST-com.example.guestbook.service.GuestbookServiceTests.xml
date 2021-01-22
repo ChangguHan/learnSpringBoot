@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.guestbook.service.GuestbookServiceTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2021-01-22T03:35:53" hostname="AL01590068.local" time="0.074">
+  <properties/>
+  <testcase name="testList()" classname="com.example.guestbook.service.GuestbookServiceTests" time="0.03"/>
+  <testcase name="testRegister()" classname="com.example.guestbook.service.GuestbookServiceTests" time="0.029"/>
+  <testcase name="testSearch()" classname="com.example.guestbook.service.GuestbookServiceTests" time="0.013"/>
+  <system-out><![CDATA[2021-01-22 12:35:53.408  INFO 6533 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.example.guestbook.service.GuestbookServiceTests], using SpringBootContextLoader
+2021-01-22 12:35:53.409  INFO 6533 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.example.guestbook.service.GuestbookServiceTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-01-22 12:35:53.409  INFO 6533 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.guestbook.service.GuestbookServiceTests]: GuestbookServiceTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-01-22 12:35:53.413  INFO 6533 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.guestbook.GuestbookApplication for test class com.example.guestbook.service.GuestbookServiceTests
+2021-01-22 12:35:53.414  INFO 6533 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2021-01-22 12:35:53.415  INFO 6533 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1bc1b1a5, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@48444291, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@55ca764d, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@215ac9e0, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@370018f7, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5dba844c, org.springframework.test.context.transaction.TransactionalTestExecutionListener@5bc4f9a8, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@2c263ef9, org.springframework.test.context.event.EventPublishingTestExecutionListener@1bd65c2a, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@124723f8, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@6eb291a1, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@737eab78, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@5ae08e31, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@71933e76, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@bd6967c]
+Hibernate: 
+    select
+        guestbook0_.gno as gno1_0_,
+        guestbook0_.moddate as moddate2_0_,
+        guestbook0_.regdate as regdate3_0_,
+        guestbook0_.content as content4_0_,
+        guestbook0_.title as title5_0_,
+        guestbook0_.writer as writer6_0_ 
+    from
+        guestbook guestbook0_ 
+    where
+        guestbook0_.gno>? 
+    order by
+        guestbook0_.gno desc limit ?
+Hibernate: 
+    select
+        count(guestbook0_.gno) as col_0_0_ 
+    from
+        guestbook guestbook0_ 
+    where
+        guestbook0_.gno>?
+PREV: false
+NEXT: true
+TOTAL: 151
+-------------------
+GuestbookDTO(gno=1504, title=Title....300, content=Content...300, writer=user0, regDate=2021-01-22T12:35:53.156974, modDate=2021-01-22T12:35:53.156974)
+GuestbookDTO(gno=1503, title=Title....299, content=Content...299, writer=user9, regDate=2021-01-22T12:35:53.124520, modDate=2021-01-22T12:35:53.124520)
+GuestbookDTO(gno=1502, title=Title....298, content=Content...298, writer=user8, regDate=2021-01-22T12:35:53.106196, modDate=2021-01-22T12:35:53.106196)
+GuestbookDTO(gno=1501, title=Title....297, content=Content...297, writer=user7, regDate=2021-01-22T12:35:53.084054, modDate=2021-01-22T12:35:53.084054)
+GuestbookDTO(gno=1500, title=Title....296, content=Content...296, writer=user6, regDate=2021-01-22T12:35:53.064936, modDate=2021-01-22T12:35:53.064936)
+GuestbookDTO(gno=1499, title=Title....295, content=Content...295, writer=user5, regDate=2021-01-22T12:35:53.039088, modDate=2021-01-22T12:35:53.039088)
+GuestbookDTO(gno=1498, title=Title....294, content=Content...294, writer=user4, regDate=2021-01-22T12:35:53.021369, modDate=2021-01-22T12:35:53.021369)
+GuestbookDTO(gno=1497, title=Title....293, content=Content...293, writer=user3, regDate=2021-01-22T12:35:53.002103, modDate=2021-01-22T12:35:53.002103)
+GuestbookDTO(gno=1496, title=Title....292, content=Content...292, writer=user2, regDate=2021-01-22T12:35:52.974702, modDate=2021-01-22T12:35:52.974702)
+GuestbookDTO(gno=1495, title=Title....291, content=Content...291, writer=user1, regDate=2021-01-22T12:35:52.954668, modDate=2021-01-22T12:35:52.954668)
+===================
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+2021-01-22 12:35:53.450  INFO 6533 --- [    Test worker] c.e.g.service.GuestbookServiceImpl       : DTO------------
+2021-01-22 12:35:53.451  INFO 6533 --- [    Test worker] c.e.g.service.GuestbookServiceImpl       : GuestbookDTO(gno=null, title=Sample Title..., content=Sample Content..., writer=user0, regDate=null, modDate=null)
+2021-01-22 12:35:53.451  INFO 6533 --- [    Test worker] c.e.g.service.GuestbookServiceImpl       : Guestbook(gno=null, title=Sample Title..., content=Sample Content..., writer=user0)
+Hibernate: 
+    insert 
+    into
+        guestbook
+        (moddate, regdate, content, title, writer) 
+    values
+        (?, ?, ?, ?, ?)
+1505
+Hibernate: 
+    select
+        guestbook0_.gno as gno1_0_,
+        guestbook0_.moddate as moddate2_0_,
+        guestbook0_.regdate as regdate3_0_,
+        guestbook0_.content as content4_0_,
+        guestbook0_.title as title5_0_,
+        guestbook0_.writer as writer6_0_ 
+    from
+        guestbook guestbook0_ 
+    where
+        guestbook0_.gno>? 
+        and (
+            guestbook0_.title like ? escape '!' 
+            or guestbook0_.content like ? escape '!'
+        ) 
+    order by
+        guestbook0_.gno desc limit ?
+PREV: false
+NEXT: false
+TOTAL: 0
+==================================
+==================================
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
