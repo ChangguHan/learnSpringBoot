@@ -29,7 +29,13 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.0'
+
+//    mariadb
+//    compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.0'
+
+//    mysql
+    compile 'mysql:mysql-connector-java'
+
     compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-java8time'
 
     implementation 'com.querydsl:querydsl-jpa'
